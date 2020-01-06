@@ -1,0 +1,33 @@
+{
+  "env": {
+      "browser": true,
+      "es6": true,
+      "jest": true
+  },
+  "extends": [
+      "plugin:jsx-a11y/recommended",
+      "standard",
+      "plugin:react/recommended",
+      "plugin:jest/all"
+  ],
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      },
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+  },
+  "plugins": ["react", "react-hooks", "jsx-a11y", "jest"],
+  "rules": {
+      "no-unused-vars": 0,
+      "no-fallthrough": 0,
+      "camelcase": 0,
+      "react/prop-types": 0,
+      "indent": ["error", 2],
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "jest/prefer-inline-snapshots": "off",
+      "react/react-in-jsx-scope": 0,
+      "jsx-a11y/anchor-is-valid": 1
+  }
+}

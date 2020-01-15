@@ -1,14 +1,25 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import Link from 'next/link'
+import NavStyles from './styles/NavStyles'
 
 const Nav = () => (
-  <nav>
+  <NavStyles>
+    <Link href="/items">
+      <a>Items</a>
+    </Link>
     <Link href="/sell">
-      <button>go to sell</button>
+      <a>Sell</a>
     </Link>
-    <Link href="/">
-      <button>go to home</button>
+    <Link href="/signup">
+      <a>Signup</a>
     </Link>
-  </nav>
+    <Link href="/orders">
+      <a>Orders</a>
+    </Link>
+    <Link href="/me">
+      <a>Account</a>
+    </Link>
+  </NavStyles>
 )
 
 export default Nav

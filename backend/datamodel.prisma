@@ -1,7 +1,12 @@
 type User {
   id: ID! @id
   createdAt: DateTime! @createdAt
-  updatedAt: DateTime! @updatedAt
   name: String
+  surname: String
   email: String
+}
+
+type Booking {
+  id: ID! @id
+  user: User!
 }

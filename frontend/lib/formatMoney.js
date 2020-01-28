@@ -1,4 +1,4 @@
-export default function(amount) {
+export default function (amount) {
   const options = {
     style: 'currency',
     currency: 'EUR',
@@ -6,5 +6,5 @@ export default function(amount) {
   }
   if (amount % 100 === 0) options.minimumFractionDigits = 0
   const formatter = new Intl.NumberFormat('de-DE', options)
-  return formatter.format(amount / 10)
+  return formatter.format(amount)
 }

@@ -3,7 +3,7 @@ import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import Spinner from '../components/Spinner'
 import Item from '../components/Item'
-import styled from 'styled-components'
+import ItemsListStyle from './styles/ItemsListStyle'
 
 const ALL_ITEMS_QUERY = gql`
   query ALL_ITEMS_QUERY {
@@ -17,25 +17,18 @@ const ALL_ITEMS_QUERY = gql`
     }
   }
 `
-const ItemList = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 60px;
-  max-width: ${props => props.theme.maxWidth};
-  margin: 0 auto
-`
-
-export default class Items extends Component {
-  render() {
+export default class ItemsList extends Component {
+  render () {
     return (
       <div style={{ textAlign: 'center' }}>
         <Query query={ALL_ITEMS_QUERY}>
           {({ data, error, loading }) => {
             if (loading) return <Spinner />
+            // eslint-disable-next-line jsx-a11y/accessible-emoji
             if (error !== undefined) return <p>⚡ {error.message} ⚡</p>
-            return <ItemList>
+            return <ItemsListStyle>
               {data.items.map(item => <Item key={item.id} item={item} />)}
-            </ItemList>
+            </ItemsListStyle>
           }}
         </Query>
       </div>

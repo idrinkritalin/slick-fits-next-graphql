@@ -21,7 +21,6 @@ export default class Item extends Component {
 
   imageSource = () => {
     const { item } = this.props
-    console.log(item)
     return item.image !== '' ? item.image : imagePlaceholder
   }
 

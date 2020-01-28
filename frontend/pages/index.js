@@ -1,8 +1,8 @@
-import Items from '../components/Items'
+import ItemsList from '../components/ItemsList'
 
 const Home = () => (
   <section>
-    <Items />
+    <ItemsList />
   </section>
 )
 

@@ -3,8 +3,8 @@ import Loader from 'react-loader'
 import { theme } from '../theme/theme'
 
 const Spinner = () =>
-  <Loader 
-    loaded={false} 
+  <Loader
+    loaded={false}
     width={10}
     radius={50}
     corners={5}

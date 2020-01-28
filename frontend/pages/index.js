@@ -1,6 +1,8 @@
+import Items from '../components/Items'
+
 const Home = () => (
   <section>
-    <p>Home!</p>
+    <Items />
   </section>
 )
 

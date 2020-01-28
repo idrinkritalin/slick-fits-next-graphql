@@ -6,6 +6,10 @@ logs
 node_modules
 bower_components
 
+*.env
+.env*
+.DS_Store
+
 *.sublime*
 
 psd

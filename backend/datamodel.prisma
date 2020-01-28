@@ -1,12 +1,16 @@
 type User {
   id: ID! @id
-  createdAt: DateTime! @createdAt
   name: String
-  surname: String
   email: String
 }
 
-type Booking {
+type Item {
   id: ID! @id
-  user: User!
+  title: String!
+  description: String!
+  image: String
+  largeImage: String
+  price: Int!
+  # createAt: DateTime! @createdAt
+  # updatedAt: DateTime! @updatedAt
 }

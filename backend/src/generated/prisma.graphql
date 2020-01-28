@@ -1,4 +1,4 @@
-type AggregateBooking {
+type AggregateItem {
   count: Int!
 }
 
@@ -10,59 +10,89 @@ type BatchPayload {
   count: Long!
 }
 
-type Booking {
+type Item {
   id: ID!
-  user: User!
+  title: String!
+  description: String!
+  image: String
+  largeImage: String
+  price: Int!
 }
 
-type BookingConnection {
+type ItemConnection {
   pageInfo: PageInfo!
-  edges: [BookingEdge]!
-  aggregate: AggregateBooking!
+  edges: [ItemEdge]!
+  aggregate: AggregateItem!
 }
 
-input BookingCreateInput {
-  id: ID
-  user: UserCreateOneInput!
+input ItemCreateInput {
+  title: String!
+  description: String!
+  image: String
+  largeImage: String
+  price: Int!
 }
 
-type BookingEdge {
-  node: Booking!
+type ItemEdge {
+  node: Item!
   cursor: String!
 }
 
-enum BookingOrderByInput {
+enum ItemOrderByInput {
   id_ASC
   id_DESC
+  title_ASC
+  title_DESC
+  description_ASC
+  description_DESC
+  image_ASC
+  image_DESC
+  largeImage_ASC
+  largeImage_DESC
+  price_ASC
+  price_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
-type BookingPreviousValues {
+type ItemPreviousValues {
   id: ID!
+  title: String!
+  description: String!
+  image: String
+  largeImage: String
+  price: Int!
 }
 
-type BookingSubscriptionPayload {
+type ItemSubscriptionPayload {
   mutation: MutationType!
-  node: Booking
+  node: Item
   updatedFields: [String!]
-  previousValues: BookingPreviousValues
+  previousValues: ItemPreviousValues
 }
 
-input BookingSubscriptionWhereInput {
+input ItemSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: BookingWhereInput
-  AND: [BookingSubscriptionWhereInput!]
-  OR: [BookingSubscriptionWhereInput!]
-  NOT: [BookingSubscriptionWhereInput!]
+  node: ItemWhereInput
+  AND: [ItemSubscriptionWhereInput!]
+  OR: [ItemSubscriptionWhereInput!]
+  NOT: [ItemSubscriptionWhereInput!]
 }
 
-input BookingUpdateInput {
-  user: UserUpdateOneRequiredInput
+input ItemUpdateInput {
+  title: String
+  description: String
+  image: String
+  largeImage: String
+  price: Int
 }
 
-input BookingWhereInput {
+input ItemWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -77,31 +107,83 @@ input BookingWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  user: UserWhereInput
-  AND: [BookingWhereInput!]
-  OR: [BookingWhereInput!]
-  NOT: [BookingWhereInput!]
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  largeImage: String
+  largeImage_not: String
+  largeImage_in: [String!]
+  largeImage_not_in: [String!]
+  largeImage_lt: String
+  largeImage_lte: String
+  largeImage_gt: String
+  largeImage_gte: String
+  largeImage_contains: String
+  largeImage_not_contains: String
+  largeImage_starts_with: String
+  largeImage_not_starts_with: String
+  largeImage_ends_with: String
+  largeImage_not_ends_with: String
+  price: Int
+  price_not: Int
+  price_in: [Int!]
+  price_not_in: [Int!]
+  price_lt: Int
+  price_lte: Int
+  price_gt: Int
+  price_gte: Int
+  AND: [ItemWhereInput!]
+  OR: [ItemWhereInput!]
+  NOT: [ItemWhereInput!]
 }
-
-input BookingWhereUniqueInput {
-  id: ID
-}
-
-scalar DateTime
 
 scalar Long
 
 type Mutation {
-  createBooking(data: BookingCreateInput!): Booking!
-  updateBooking(data: BookingUpdateInput!, where: BookingWhereUniqueInput!): Booking
-  upsertBooking(where: BookingWhereUniqueInput!, create: BookingCreateInput!, update: BookingUpdateInput!): Booking!
-  deleteBooking(where: BookingWhereUniqueInput!): Booking
-  deleteManyBookings(where: BookingWhereInput): BatchPayload!
+  createItem(data: ItemCreateInput!): Item!
+  updateManyItems(data: ItemUpdateInput!, where: ItemWhereInput): BatchPayload!
+  deleteManyItems(where: ItemWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
-  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
-  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
-  deleteUser(where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
 }
 
@@ -123,25 +205,21 @@ type PageInfo {
 }
 
 type Query {
-  booking(where: BookingWhereUniqueInput!): Booking
-  bookings(where: BookingWhereInput, orderBy: BookingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Booking]!
-  bookingsConnection(where: BookingWhereInput, orderBy: BookingOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): BookingConnection!
-  user(where: UserWhereUniqueInput!): User
+  items(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Item]!
+  itemsConnection(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ItemConnection!
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   node(id: ID!): Node
 }
 
 type Subscription {
-  booking(where: BookingSubscriptionWhereInput): BookingSubscriptionPayload
+  item(where: ItemSubscriptionWhereInput): ItemSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }
 
 type User {
   id: ID!
-  createdAt: DateTime!
   name: String
-  surname: String
   email: String
 }
 
@@ -152,15 +230,8 @@ type UserConnection {
 }
 
 input UserCreateInput {
-  id: ID
   name: String
-  surname: String
   email: String
-}
-
-input UserCreateOneInput {
-  create: UserCreateInput
-  connect: UserWhereUniqueInput
 }
 
 type UserEdge {
@@ -171,21 +242,19 @@ type UserEdge {
 enum UserOrderByInput {
   id_ASC
   id_DESC
-  createdAt_ASC
-  createdAt_DESC
   name_ASC
   name_DESC
-  surname_ASC
-  surname_DESC
   email_ASC
   email_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
 }
 
 type UserPreviousValues {
   id: ID!
-  createdAt: DateTime!
   name: String
-  surname: String
   email: String
 }
 
@@ -207,34 +276,9 @@ input UserSubscriptionWhereInput {
   NOT: [UserSubscriptionWhereInput!]
 }
 
-input UserUpdateDataInput {
-  name: String
-  surname: String
-  email: String
-}
-
 input UserUpdateInput {
   name: String
-  surname: String
   email: String
-}
-
-input UserUpdateManyMutationInput {
-  name: String
-  surname: String
-  email: String
-}
-
-input UserUpdateOneRequiredInput {
-  create: UserCreateInput
-  update: UserUpdateDataInput
-  upsert: UserUpsertNestedInput
-  connect: UserWhereUniqueInput
-}
-
-input UserUpsertNestedInput {
-  update: UserUpdateDataInput!
-  create: UserCreateInput!
 }
 
 input UserWhereInput {
@@ -252,14 +296,6 @@ input UserWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
   name: String
   name_not: String
   name_in: [String!]
@@ -274,20 +310,6 @@ input UserWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  surname: String
-  surname_not: String
-  surname_in: [String!]
-  surname_not_in: [String!]
-  surname_lt: String
-  surname_lte: String
-  surname_gt: String
-  surname_gte: String
-  surname_contains: String
-  surname_not_contains: String
-  surname_starts_with: String
-  surname_not_starts_with: String
-  surname_ends_with: String
-  surname_not_ends_with: String
   email: String
   email_not: String
   email_in: [String!]
@@ -305,8 +327,4 @@ input UserWhereInput {
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
-}
-
-input UserWhereUniqueInput {
-  id: ID
 }

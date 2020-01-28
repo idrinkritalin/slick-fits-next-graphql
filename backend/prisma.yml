@@ -3,8 +3,9 @@ datamodel: datamodel.prisma
 
 generate:
   - generator: graphql-schema
-    output: ./src/generated/prisma.graphql
+    output: ./src/generated/
 
 hooks:
   post-deploy:
     - echo "Deployment finished"
+    - prisma generate

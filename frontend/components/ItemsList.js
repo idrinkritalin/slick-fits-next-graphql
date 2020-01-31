@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
 import Spinner from '../components/Spinner'
@@ -17,21 +16,21 @@ const ALL_ITEMS_QUERY = gql`
     }
   }
 `
-export default class ItemsList extends Component {
-  render () {
-    return (
-      <div style={{ textAlign: 'center' }}>
-        <Query query={ALL_ITEMS_QUERY}>
-          {({ data, error, loading }) => {
-            if (loading) return <Spinner />
-            // eslint-disable-next-line jsx-a11y/accessible-emoji
-            if (error !== undefined) return <p>⚡ {error.message} ⚡</p>
-            return <ItemsListStyle>
-              {data.items.map(item => <Item key={item.id} item={item} />)}
-            </ItemsListStyle>
-          }}
-        </Query>
-      </div>
-    )
-  }
+const ItemsList = () => {
+  return (
+    <div style={{ textAlign: 'center' }}>
+      <Query query={ALL_ITEMS_QUERY}>
+        {({ data, error, loading }) => {
+          if (loading) return <Spinner />
+          // eslint-disable-next-line jsx-a11y/accessible-emoji
+          if (error !== undefined) return <p>⚡ {error.message} ⚡</p>
+          return <ItemsListStyle>
+            {data.items.map(item => <Item key={item.id} item={item} />)}
+          </ItemsListStyle>
+        }}
+      </Query>
+    </div>
+  )
 }
+
+export default ItemsList

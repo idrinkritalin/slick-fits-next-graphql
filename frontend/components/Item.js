@@ -49,9 +49,9 @@ Item.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
-    description: PropTypes.string,
-    image: PropTypes.string.isRequired,
-    largeImage: PropTypes.string.isRequired
+    description: PropTypes.string.isRequired,
+    image: PropTypes.string,
+    largeImage: PropTypes.string
   }).isRequired
 }
 

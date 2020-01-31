@@ -34,3 +34,4 @@ const ItemsList = () => {
 }
 
 export default ItemsList
+export { ALL_ITEMS_QUERY }

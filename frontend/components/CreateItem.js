@@ -37,6 +37,26 @@ const CreateItem = () => {
 
   const [form, setForm] = useState(defaultForm)
 
+  const uploadFile = async e => {
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('upload_preset', 'sickfits')
+
+    const res = await fetch('https://api.cloudinary.com/v1_1/djkzyoadp/image/upload', {
+      method: 'POST',
+      body: data
+    })
+
+    const file = await res.json()
+    console.log(file)
+    setForm({
+      ...form,
+      image: file.secure_url,
+      largeImage: file.eager[0].secure_url
+    })
+  }
+
   return <Mutation mutation={CREATE_ITEM_MUTATION} variables={form}>
     {(createItem, { loading, error }) => (
       <Form onSubmit={async e => {
@@ -50,7 +70,7 @@ const CreateItem = () => {
         <Error error={error} />
         <fieldset disabled={loading} aria-busy={loading}>
           <label htmlFor="title">
-        Title
+            Title
             <input
               type="text"
               id="title"
@@ -59,20 +79,21 @@ const CreateItem = () => {
               value={form.title}
               onChange={(e) => { setForm({ ...form, title: e.target.value }) }}
               required />
+            {form.image && <img src={form.image} alt="Upload preview" />}
           </label>
           <label htmlFor="description">
-        Description
+            Description
             <input
               type="text"
               id="descritpion"
               name="description"
               placeholder="Enter a description..."
               value={form.description}
-              onChange={(e) => { setForm({ ...form, description: e.target.value }) }}
+              onChange={e => { setForm({ ...form, description: e.target.value }) }}
               required />
           </label>
           <label htmlFor="price">
-        Price
+            Price
             <input
               type="number"
               id="price"
@@ -80,8 +101,18 @@ const CreateItem = () => {
               placeholder="Price"
               value={form.price}
               min={0}
-              onChange={(e) => { setForm({ ...form, price: e.target.value }) }}
+              onChange={e => { setForm({ ...form, price: e.target.value }) }}
               required />
+          </label>
+          <label htmlFor="file">
+            Image
+            <input
+              type="file"
+              id="file"
+              name="file"
+              placeholder="Upload your image..."
+              onChange={e => uploadFile(e)}
+            />
           </label>
           <button type="submit">SUBMIT</button>
         </fieldset>

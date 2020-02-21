@@ -4,6 +4,7 @@ import gql from 'graphql-tag'
 import Spinner from '../components/Spinner'
 import Error from './ErrorMessage'
 import Form from './styles/Form'
+import Router from 'next/router'
 
 const SINGLE_ITEM_QUERY = gql`
   query SINGLE_ITEM_QUERY ($id: ID!) {
@@ -44,6 +45,9 @@ const UpdateItem = ({ id }) => {
   const onUpdateItem = async (e, updateItem) => {
     e.preventDefault()
     const res = await updateItem({ ...form })
+    Router.push({
+      pathname: '/'
+    })
   }
 
   return <Query variables={{ id }} query={SINGLE_ITEM_QUERY}>

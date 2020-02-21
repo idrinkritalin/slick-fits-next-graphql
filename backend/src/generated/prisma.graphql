@@ -178,9 +178,14 @@ input ItemWhereInput {
 
 scalar Long
 
+input ItemWhereUniqueInput {
+  id: ID
+}
+
 type Mutation {
   createItem(data: ItemCreateInput!): Item!
   updateManyItems(data: ItemUpdateInput!, where: ItemWhereInput): BatchPayload!
+  updateItem(data: ItemUpdateInput!, where: ItemWhereUniqueInput!): Item!
   deleteManyItems(where: ItemWhereInput): BatchPayload!
   createUser(data: UserCreateInput!): User!
   updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
